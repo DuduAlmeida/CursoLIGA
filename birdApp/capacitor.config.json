@@ -1,0 +1,13 @@
+{
+  "appId": "com.duliga.birdApp",
+  "appName": "birdApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
