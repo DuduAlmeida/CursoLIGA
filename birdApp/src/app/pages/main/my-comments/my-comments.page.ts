@@ -15,24 +15,24 @@ export class MyCommentsPage implements OnInit {
 
 
   /* #region Public properties*/
-  
+
   public listComments: CommentProxy[] = [];
-  
+
   /* #Endregion Public properties*/
 
-/* #region LifeCycle Events*/
+  /* #region LifeCycle Events*/
 
-/*** 
- * Método executado ao iniciar o componente
- */
-public async ngOnInit(): Promise<void>{
-  // this.listComments = await this.comment.getMyComments();
-}
+  /*** 
+   * Método executado ao iniciar o componente
+   */
+  public async ngOnInit(): Promise<void> {
+    this.listComments = await this.comment.getMyComments();
+  }
 
-/* #Endregion LifeCycle Events*/
+  /* #Endregion LifeCycle Events*/
 
   /* #region Public methods*/
-  
+
   /*** 
    * O método que retorna a identificação do item da lista para ser usado
    * para verificar se o item já existe na lista, caso exista, não
@@ -41,9 +41,9 @@ public async ngOnInit(): Promise<void>{
    * @param index -> o índice desse item na lista
    * @param value -> as informações do item
    */
-  public trackById(index: number, value: CommentProxy): number{
+  public trackById(index: number, value: CommentProxy): number {
     return value.id;
   }
-  
+
   /* #Endregion Public methods*/
 }

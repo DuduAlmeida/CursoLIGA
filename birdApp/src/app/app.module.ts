@@ -24,12 +24,10 @@ registerLocaleData(pt);
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot(
-      {
-        name: environment.config.dbName,
-        driverOrder: ['indexeddb', 'localStorage'],
-      }
-    )
+    IonicStorageModule.forRoot({
+      name: environment.config.dbName,
+      driverOrder: ['indexeddb', 'localStorage']
+    }),
   ],
   providers: [
     StatusBar,

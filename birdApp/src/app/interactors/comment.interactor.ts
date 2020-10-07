@@ -5,6 +5,7 @@ import { CommentProxy } from '../models/proxies/comment.proxy';
 import { StorageAsyncResult } from '../models/interfaces/storage-async-result.interface';
 import { environment } from 'src/environments/environment';
 import { getMyCommentsMockup } from './comment.mockup';
+import { Storage } from '@ionic/storage';
 
 /*** 
  * A classe que representa o interactor que lida com os comentários da aplicação
@@ -26,15 +27,15 @@ export class CommentInteractor {
      */
     public async getMyComments(): Promise<StorageAsyncResult<CommentProxy[]>> {
 
-        if( environment.mockupEnabled)
+        if(environment.mockupEnabled)
             return await getMyCommentsMockup();
 
         await this.storage.set(environment.keys.myComments, [
             getFakeCommentProxy(),
             getFakeCommentProxy(),
             getFakeCommentProxy(),
-            getFakeCommentProxy(),
-        ])
+            getFakeCommentProxy()
+        ]);
 
         await this.storage.ready().catch(console.error);
 

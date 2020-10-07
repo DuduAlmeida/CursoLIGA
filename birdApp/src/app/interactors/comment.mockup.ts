@@ -1,5 +1,4 @@
-import { getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
-import { CommentProxy } from '../models/proxies/comment.proxy';
+import { CommentProxy , getFakeCommentProxy} from '../models/proxies/comment.proxy';
 import { StorageAsyncResult } from '../models/interfaces/storage-async-result.interface';
 
 /*** 
@@ -14,6 +13,8 @@ export async function getMyCommentsMockup(): Promise<StorageAsyncResult<CommentP
             getFakeCommentProxy(),
             getFakeCommentProxy(),
             getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy()
         ]
-    })
+    });
 }

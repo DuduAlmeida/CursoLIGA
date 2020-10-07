@@ -7,7 +7,6 @@ export const environment = {
   mockupEnabled: true,
   config: {
     dbName: '__bird',
-    
   },
   keys: {
     myComments: 'MY_COMMENTS_KEY',
