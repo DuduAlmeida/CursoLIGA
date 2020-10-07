@@ -1,3 +1,4 @@
+import { CommentItemModule } from './../../../components/comment-item/comment-item.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { MyCommentsPage } from './my-comments.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MyCommentsPageRoutingModule
+    MyCommentsPageRoutingModule,
+    CommentItemModule
   ],
   declarations: [MyCommentsPage]
 })
