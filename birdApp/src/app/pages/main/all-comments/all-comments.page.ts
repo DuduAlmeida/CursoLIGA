@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-all-comments',
+  selector: 'bird-all-comments',
   templateUrl: './all-comments.page.html',
   styleUrls: ['./all-comments.page.scss'],
 })
