@@ -1,3 +1,4 @@
+import { CommentService } from './../../../services/comment/comment.service';
 import { Component, OnInit } from '@angular/core';
 import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
 
@@ -8,23 +9,27 @@ import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/commen
 })
 export class MyCommentsPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(
+    private readonly comment: CommentService
+  ) { }
 
 
   /* #region Public properties*/
   
-  public listComments: CommentProxy[] = [
-    getFakeCommentProxy(), 
-    getFakeCommentProxy(),
-    getFakeCommentProxy(),
-    getFakeCommentProxy(),
-    getFakeCommentProxy()
-  ];
+  public listComments: CommentProxy[] = [];
   
   /* #Endregion Public properties*/
+
+/* #region LifeCycle Events*/
+
+/*** 
+ * Método executado ao iniciar o componente
+ */
+public async ngOnInit(): Promise<void>{
+  // this.listComments = await this.comment.getMyComments();
+}
+
+/* #Endregion LifeCycle Events*/
 
   /* #region Public methods*/
   
