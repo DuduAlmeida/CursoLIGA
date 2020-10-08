@@ -24,7 +24,10 @@ export class AllCommentsPage implements OnInit {
 
   public async ngOnInit() {
     // this.listComments = await this.comment.getAllComments();
-    this.listComments = await this.comment.getAllCommentsPaginated(2, 3);
+    this.listComments = await this.comment.getAllCommentsPaginated(2, 3)
+    .then(list =>{
+      return list.items;
+    });
   }
 
   /* #Endregion Life-Cycle Events*/

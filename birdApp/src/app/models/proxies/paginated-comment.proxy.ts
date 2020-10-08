@@ -52,3 +52,14 @@ export function getFakeCommentPaginatedProxy(): PaginatedCommentProxy {
   
   return paginatedComment;
 }
+
+export function getEmptyCommentPaginatedProxy(): PaginatedCommentProxy{
+  let paginatedComment: PaginatedCommentProxy = {
+    currentPage: 0,
+    pageCount: 0,
+    maxItens: 0,
+    items: []
+  };
+
+  return paginatedComment;
+}

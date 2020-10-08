@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { max } from 'rxjs/operators';
 import { CommentInteractor } from 'src/app/interactors/comment.interactor';
 import { CommentProxy } from 'src/app/models/proxies/comment.proxy';
+import { getEmptyCommentPaginatedProxy, PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 
 
 /*** 
@@ -46,17 +47,17 @@ export class CommentService {
     return success;
   }
 
-  public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<CommentProxy[]> {
+  public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
     
     const { success, error } = await this.interactor.getAllCommentsPaginated(currentPage, maxItens);
 
     if (error)
-      return [];
+      return getEmptyCommentPaginatedProxy();
     
     if(!Array.isArray(success.items))
-      return [];
+      return getEmptyCommentPaginatedProxy();
 
-    return success.items;
+    return success;
   }
 
   /* #Endregion Public methods*/
