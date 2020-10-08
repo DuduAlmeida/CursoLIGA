@@ -32,5 +32,22 @@ export class CommentService {
     return success;
   }
 
+  public async getAllComments(): Promise<CommentProxy[]> {
+    
+    const { success, error } = await this.interactor.getAllComments();
+
+    if (error)
+      return [];
+    
+    if(!Array.isArray(success))
+      return [];
+
+    return success;
+  }
+
+  // public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
+  //   // TODO: Implementar a busca dos dados paginados
+  // }
+
   /* #Endregion Public methods*/
 }

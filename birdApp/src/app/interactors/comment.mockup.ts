@@ -18,3 +18,20 @@ export async function getMyCommentsMockup(): Promise<StorageAsyncResult<CommentP
         ]
     });
 }
+
+export async function getAllCommentsMockup(): Promise<StorageAsyncResult<CommentProxy[]>> {
+
+    return Promise.resolve({
+        error: undefined,
+        success: [
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy(),
+            getFakeCommentProxy()
+        ]
+    });
+}
