@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CategoryProxy } from './../../models/proxies/category.proxy';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bird-category-item',
@@ -11,4 +12,11 @@ export class CategoryItemComponent implements OnInit {
 
   ngOnInit() {}
 
+
+  /* #region Inputs*/
+  
+  @Input()
+  public content: CategoryProxy;
+  
+  /* #Endregion Inputs*/
 }

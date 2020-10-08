@@ -1,0 +1,41 @@
+//Acessa a classe do pai == :host()
+@for $i from 1 through 4{
+
+    :host(.category--bird-#{ $i}){
+        ion-icon.category--bird-image-#{ $i}, 
+        ion-img.category--bird-image-#{ $i}{
+            display: block;
+        }
+    }
+}
+
+.category{    
+    border-radius: 2.5rem;
+    height: 20rem;
+    width: 100%;
+    padding: 2rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    
+
+    h3{
+        margin: 0;
+        max-width: 100%;
+        color: var(--bird-light);
+    }
+
+    ion-icon,
+    ion-img{
+        display: none;
+        height: 70%;
+        margin-top: auto;
+    }
+
+    &--bird-image-1{
+        margin-left: auto;
+        height: 80%;
+    }
+
+}
