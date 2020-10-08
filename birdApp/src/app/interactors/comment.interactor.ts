@@ -8,6 +8,7 @@ import { CommentProxy } from '../models/proxies/comment.proxy';
 import { StorageAsyncResult } from '../models/interfaces/storage-async-result.interface';
 import { environment } from 'src/environments/environment';
 import { getAllCommentsMockup, getAllCommentsPaginatedMockup, getMyCommentsMockup } from './comment.mockup';
+import { PaginatedCommentProxy } from '../models/proxies/paginated-comment.proxy';
 
 /*** 
  * A classe que representa o interactor que lida com os comentários da aplicação
@@ -47,7 +48,7 @@ export class CommentInteractor {
     }
 
     public async getAllComments(): Promise<StorageAsyncResult<CommentProxy[]>> {
-        let result;
+        let result: Promise<StorageAsyncResult<CommentProxy[]>>;
 
         if (environment.mockupEnabled)
             return await getAllCommentsMockup();
@@ -67,25 +68,12 @@ export class CommentInteractor {
         return result;
     }
 
-    public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<StorageAsyncResult<CommentProxy[]>> {
-        let result: Promise<StorageAsyncResult<CommentProxy[]>>;
+    public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<StorageAsyncResult<PaginatedCommentProxy>> {        
 
         if (environment.mockupEnabled)
             return await getAllCommentsPaginatedMockup(currentPage, maxItens);
 
-
-        this.http.get<any[]>(`${environment.api.baseUrl}/${environment.api.comment}`)
-            //Caso precise tratar a resposta da API:
-            // .pipe(
-            //     map(resData => {
-            //         return resData
-            //     })
-            // )
-            .subscribe(transformedData => {
-                result = Promise.resolve({ success: transformedData, error: undefined })
-                    .catch(() => ({ success: undefined, error: 'Ocorreu um erro ao buscar os dados da api, tente novamente' }));
-            });
-        return result;
+        
     }
 
     /* #Endregion Storage methods*/

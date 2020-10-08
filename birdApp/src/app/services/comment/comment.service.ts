@@ -53,10 +53,10 @@ export class CommentService {
     if (error)
       return [];
     
-    if(!Array.isArray(success))
+    if(!Array.isArray(success.items))
       return [];
 
-    return success;
+    return success.items;
   }
 
   /* #Endregion Public methods*/
