@@ -15,6 +15,7 @@ export const environment = {
     baseUrl: 'http://localhost:3000',
     comment: {
       list: '/comments',
+      listPaginated: '/comments?currentPage={currentPage}&maxItens={maxItens}'
     },
   },
 };

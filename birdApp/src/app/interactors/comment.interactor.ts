@@ -47,33 +47,33 @@ export class CommentInteractor {
             .catch(() => ({ success: undefined, error: 'Ocorreu um erro ao buscar do cache, tente novamente' }));
     }
 
-    public async getAllComments(): Promise<StorageAsyncResult<CommentProxy[]>> {
-        let result: Promise<StorageAsyncResult<CommentProxy[]>>;
+    public async getAllComments(): Promise<StorageAsyncResult<CommentProxy[]>> {        
 
         if (environment.mockupEnabled)
             return await getAllCommentsMockup();
 
 
-        this.http.get<any[]>(`${environment.api.baseUrl}/${environment.api.comment}`)
-            //Caso precise tratar a resposta da API:
-            // .pipe(
-            //     map(resData => {
-            //         return resData
-            //     })
-            // )
-            .subscribe(transformedData => {
-                result = Promise.resolve({ success: transformedData, error: undefined })
-                    .catch(() => ({ success: undefined, error: 'Ocorreu um erro ao buscar os dados da api, tente novamente' }));
-            });
-        return result;
+        const url = environment.api.comment.list;
+
+        return await this.http.get<CommentProxy[]>(url)
+            .toPromise()
+            .then(success => ({ success, error: undefined }))
+            .catch((error) => ({ success: undefined, error }));
     }
 
-    public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<StorageAsyncResult<PaginatedCommentProxy>> {        
+    public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<StorageAsyncResult<PaginatedCommentProxy>> {
 
         if (environment.mockupEnabled)
             return await getAllCommentsPaginatedMockup(currentPage, maxItens);
 
-        
+        const url = environment.api.comment.listPaginated
+            .replace('{currentPage}', currentPage.toString())
+            .replace('{maxItens}', maxItens.toString());
+
+        return await this.http.get<PaginatedCommentProxy>(url)
+            .toPromise()
+            .then(success => ({ success, error: undefined }))
+            .catch((error) => ({ success: undefined, error }));
     }
 
     /* #Endregion Storage methods*/
