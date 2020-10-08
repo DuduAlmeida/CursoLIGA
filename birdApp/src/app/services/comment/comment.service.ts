@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { max } from 'rxjs/operators';
 import { CommentInteractor } from 'src/app/interactors/comment.interactor';
 import { CommentProxy } from 'src/app/models/proxies/comment.proxy';
 
@@ -45,9 +46,18 @@ export class CommentService {
     return success;
   }
 
-  // public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
-  //   // TODO: Implementar a busca dos dados paginados
-  // }
+  public async getAllCommentsPaginated(currentPage: number, maxItens: number): Promise<CommentProxy[]> {
+    
+    const { success, error } = await this.interactor.getAllCommentsPaginated(currentPage, maxItens);
+
+    if (error)
+      return [];
+    
+    if(!Array.isArray(success))
+      return [];
+
+    return success;
+  }
 
   /* #Endregion Public methods*/
 }

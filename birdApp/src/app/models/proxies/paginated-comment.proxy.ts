@@ -24,3 +24,21 @@ export interface PaginatedCommentProxy {
      */
     items: CommentProxy[];
   }
+
+  export function getFakeCommentPaginatedProxy(): CommentProxy{
+    return {
+      
+        id: 1,
+        message: 'Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, ',
+        createdAt: new Date().toISOString(),
+        personName: 'Alice Smith',
+        personColor: '#ff565e',
+        personEmoji: '🐄',
+        categoryId: 2,
+        category: {
+          name: 'Typescript',
+          color: '#ffc542',      
+          id: 2
+        }
+      };
+}
