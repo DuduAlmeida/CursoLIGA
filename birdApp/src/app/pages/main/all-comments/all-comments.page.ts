@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { throttleTime, map } from 'rxjs/operators';
+import { TrackablePage } from 'src/app/common/trackable.page';
 import { CommentProxy } from 'src/app/models/proxies/comment.proxy';
 import { PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 import { CommentService } from 'src/app/services/comment/comment.service';
@@ -10,11 +11,14 @@ import { CommentService } from 'src/app/services/comment/comment.service';
   templateUrl: './all-comments.page.html',
   styleUrls: ['./all-comments.page.scss'],
 })
-export class AllCommentsPage implements OnInit, OnDestroy {
+export class AllCommentsPage extends TrackablePage implements OnInit, OnDestroy {
 
   constructor(
     private readonly comment: CommentService
   ) {
+
+    super();
+
     this.currentScrollSubscription = this.currentScrollFrameSubject.pipe(
       //Espera determinado milisegundos para emitir um evento
       throttleTime(16),
@@ -59,10 +63,6 @@ export class AllCommentsPage implements OnInit, OnDestroy {
   /* #Endregion Private Events*/
 
   /* #region Public Methods*/
-
-  public trackById(index: number, value: CommentProxy): number {
-    return value.id;
-  }
 
   /*** 
    * Método que é executado toda vez que ocorre um evento de scroll no container dos itens

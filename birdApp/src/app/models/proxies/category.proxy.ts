@@ -2,7 +2,7 @@ import { CommentProxy } from './comment.proxy';
 /*** 
  * A interface que representa as informações de uma categoria vinda da API
  */
-export interface CategoryProxy{
+export interface CategoryProxy {
 
     /*** 
      * A identificação dessa categoria
@@ -17,10 +17,20 @@ export interface CategoryProxy{
     /*** 
      * A cor que representa a categoria
      */
-    color: string;    
+    color: string;
 
     /*** 
      * A lista de comentários existentes nessa categoria
      */
     comments?: CommentProxy[];
+}
+
+
+export function getFakeCategoryProxy(): CategoryProxy {
+    return {
+        id: 2,
+        name: 'Typescript',
+        color: '#ffc542',
+        comments: []
+    };
 }
