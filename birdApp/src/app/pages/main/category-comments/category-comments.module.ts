@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CategoryCommentsPageRoutingModule } from './category-comments-routing.module';
 
 import { CategoryCommentsPage } from './category-comments.page';
+import { CommentItemModule } from 'src/app/components/comment-item/comment-item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CategoryCommentsPageRoutingModule
+    CategoryCommentsPageRoutingModule,
+    CommentItemModule
   ],
   declarations: [CategoryCommentsPage]
 })

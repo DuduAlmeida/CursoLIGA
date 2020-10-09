@@ -1,10 +1,12 @@
 import { TrackablePage } from './../../../common/trackable.page';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryProxy, getFakeCategoryProxy } from 'src/app/models/proxies/category.proxy';
-import { PaginatedCategoryProxy } from 'src/app/models/proxies/paginated-category.proxy';
+
 import { Subject, Subscription } from 'rxjs';
 import { map, throttleTime } from 'rxjs/operators';
+import { PaginatedCategoryProxy } from 'src/app/models/proxies/paginated-category.proxy';
 import { CategoryService } from 'src/app/services/category/category.service';
+
 
 @Component({
   selector: 'bird-categories',

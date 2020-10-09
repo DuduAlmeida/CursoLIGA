@@ -41,25 +41,56 @@ export async function getAllCommentsMockup(): Promise<StorageAsyncResult<Comment
 export async function getAllCommentsPaginatedMockup(currentPage: number, maxItens: number): Promise<StorageAsyncResult<PaginatedCommentProxy>> {
 
     let paginatedComment: PaginatedCommentProxy = getFakeCommentPaginatedProxy(),
-    
+
         minIndex = (currentPage - 1) * maxItens,
         maxIndex = currentPage * maxItens,
-        items =0;
+        items = 0;
 
     // debugger;
 
     paginatedComment.items.map((comment, index) => {
-        comment.id = index;
-        comment.personName += index;
+        comment.id = index + 1;
+        comment.personName += index + 1;
         items++;
     });
 
     paginatedComment.items = paginatedComment.items
-    .filter((transformedComment, index) => {
-        return minIndex <= index && index < maxIndex;
+        .filter((transformedComment, index) => {
+            return minIndex <= index && index < maxIndex;
+        });
+
+    paginatedComment.pageCount = items / maxItens;
+    paginatedComment.currentPage = currentPage;
+    paginatedComment.maxItens = maxItens;
+
+    return Promise.resolve({
+        error: undefined,
+        success: paginatedComment
+    });
+}
+export async function getAllCommentsPaginatedByIdMockup(categoryId: number, currentPage: number, maxItens: number): Promise<StorageAsyncResult<PaginatedCommentProxy>> {
+
+    let paginatedComment: PaginatedCommentProxy = getFakeCommentPaginatedProxy(),
+
+        minIndex = (currentPage - 1) * maxItens,
+        maxIndex = currentPage * maxItens,
+        items = 0;
+
+
+    paginatedComment.items.map((comment, index) => {
+        comment.id = index + 1;
+        comment.personName += index + 1;
+        items++;
     });
 
-    paginatedComment.pageCount = items/ maxItens;
+    paginatedComment.items = paginatedComment.items
+        .filter((transformedComment, index) => {
+            return categoryId == transformedComment.category.id
+                && minIndex <= index
+                && index < maxIndex;
+        });
+
+    paginatedComment.pageCount = items / maxItens;
     paginatedComment.currentPage = currentPage;
     paginatedComment.maxItens = maxItens;
 

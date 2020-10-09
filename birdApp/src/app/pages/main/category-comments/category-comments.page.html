@@ -1,0 +1,13 @@
+<div class="category-comments" (scroll)="onScroll($event)">
+
+    <div class="category-comments--add-item ion-activatable" >
+        <ion-ripple-effect></ion-ripple-effect>
+        <ion-icon src="assets/images/add_button.svg"></ion-icon>
+        <p>Adicionar novo item</p>
+    </div>
+    
+    <ng-container *ngFor="let comment of listComments;trackBy: trackById;">
+        <bird-comment-item [content]="comment"></bird-comment-item>
+    </ng-container>
+
+</div>
