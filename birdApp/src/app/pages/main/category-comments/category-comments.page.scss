@@ -6,6 +6,16 @@
     max-height: 100%;
     overflow-y: auto;
 
+    ion-back-button{
+
+        color: var(--bird-primary);
+        background-color: var(--bird-primary-dark);
+        width: 5rem;
+        height: 5rem;
+        border-radius: 25%;
+        margin-top: 1.6rem;
+    }
+
     bird-comment-item {
         margin-bottom: 1.6rem;
         
