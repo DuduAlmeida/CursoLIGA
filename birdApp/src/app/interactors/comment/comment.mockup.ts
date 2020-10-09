@@ -1,6 +1,7 @@
-import { CommentProxy, getFakeCommentProxy } from '../models/proxies/comment.proxy';
-import { StorageAsyncResult } from '../models/interfaces/storage-async-result.interface';
-import { getFakeCommentPaginatedProxy, PaginatedCommentProxy } from '../models/proxies/paginated-comment.proxy';
+import { StorageAsyncResult } from 'src/app/models/interfaces/storage-async-result.interface';
+import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
+import { PaginatedCommentProxy, getFakeCommentPaginatedProxy } from 'src/app/models/proxies/paginated-comment.proxy';
+
 
 /*** 
  * Método que retorna os meus comentários criados

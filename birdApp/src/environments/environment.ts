@@ -17,6 +17,10 @@ export const environment = {
       list: '/comments',
       listPaginated: '/comments?currentPage={currentPage}&maxItens={maxItens}'
     },
+    category: {
+      list: '/categories',
+      listPaginated: '/categories?currentPage={currentPage}&maxItens={maxItens}'
+    },
   },
 };
 

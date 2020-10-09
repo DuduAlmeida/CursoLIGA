@@ -3,6 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    max-height: 100%;
+    overflow-y: auto;
 
     bird-category-item {
         width: calc(50% - 1rem);

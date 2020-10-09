@@ -1,7 +1,7 @@
-<div class="categories">
+<div class="categories" (scroll)="onScroll($event)">
 
     <ng-container *ngFor="let category of listCategories;let i = index ;trackBy: trackById" >
-        <bird-category-item class="category--bird-{{i + 1}}" [content]="category"></bird-category-item>
+        <bird-category-item class="category--bird-{{ (i % 4) + 1}}" [content]="category"></bird-category-item>
     </ng-container>
 
     <div class="categories--add-item ion-activatable" >

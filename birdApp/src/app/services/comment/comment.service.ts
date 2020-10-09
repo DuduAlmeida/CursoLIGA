@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { max } from 'rxjs/operators';
-import { CommentInteractor } from 'src/app/interactors/comment.interactor';
+import { CommentInteractor } from 'src/app/interactors/comment/comment.interactor';
+
 import { CommentProxy } from 'src/app/models/proxies/comment.proxy';
 import { getEmptyCommentPaginatedProxy, PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 
