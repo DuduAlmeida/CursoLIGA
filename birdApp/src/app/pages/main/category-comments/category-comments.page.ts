@@ -47,6 +47,10 @@ export class CategoryCommentsPage extends TrackablePage implements OnInit {
   public listComments: CommentProxy[] = [];
   public paginatedComment: PaginatedCommentProxy;
   public isLoadingComments: boolean;
+  /*** 
+   * A identificação da categoria
+   */
+  public categoryId: number;
 
   /* #Endregion Public properties*/
 
@@ -64,11 +68,6 @@ export class CategoryCommentsPage extends TrackablePage implements OnInit {
   /* #Endregion Life-Cycle Events*/
 
   /* #region Private Properties*/
-
-  /*** 
-   * A identificação da categoria
-   */
-  private readonly categoryId: number;
 
   private readonly currentScrollSubscription: Subscription;
 

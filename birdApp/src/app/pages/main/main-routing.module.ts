@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: () => import('./category-comments/category-comments.module').then( m => m.CategoryCommentsPageModule)
       },
       {
+        path: 'categories/:categoryId/comment',
+        loadChildren: () => import('./create-comment/create-comment.module').then( m => m.CreateCommentPageModule)
+      },
+      {
         path: 'my-comments',
         loadChildren: () => import('./my-comments/my-comments.module').then( m => m.MyCommentsPageModule)
       },
@@ -31,6 +35,7 @@ const routes: Routes = [
       },
     ]    
   },
+
 
 ];
 
