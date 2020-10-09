@@ -7,17 +7,21 @@
         <p>Por favor, preencha os campos abaixo:</p>
     </div>
 
-    <form>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
         <div class="bird--input">
             <ion-icon name="person-outline"></ion-icon>
-            <input type="text" placeholder="Seu nome">
+            <input formControlName="personName" type="text" placeholder="Seu nome">
         </div>
 
         <div class="comment--avatar">
-            <ng-container *ngFor="let avatar of listAvatars">
+            <ng-container *ngFor="let avatar of listAvatars; let i = index">
 
-                <div class="comment--avatar--item ion-activatable" [style.background-color]="avatar.personColor">
+                <div class="comment--avatar--item ion-activatable" 
+                (click)="formGroup.controls.personAvatarIndex.setValue(i)"
+                [style.background-color]="avatar.personColor"
+                [class.comment--avatar--item--selected]="formGroup.controls.personAvatarIndex.value === i"
+                >
                     <ion-ripple-effect></ion-ripple-effect>
                     <p>{{ avatar.personEmoji }}</p>
                 </div>
@@ -26,7 +30,7 @@
 
         <div class="bird--input no-margin">
             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-            <textarea placeholder="Digite aqui o seu comentário"></textarea>
+            <textarea formControlName="message" placeholder="Digite aqui o seu comentário"></textarea>
         </div>
 
         <div class="comment--buttons">
@@ -37,8 +41,12 @@
             </div>
 
             <div class="comment--buttons--item full ion-activatable">
-                <ion-ripple-effect></ion-ripple-effect>
-                <ion-button  [routerLink]="['/main/categories',categoryId]">Criar  ➝</ion-button>
+                <!-- <ion-ripple-effect></ion-ripple-effect> -->
+                <!-- [routerLink]="['/main/categories',categoryId]"  -->
+                <button  
+                    type="submit"
+                    [disabled]="formGroup.status !== 'VALID' || isSendingForm"
+                >Criar  ➝</button>
             </div>
         </div>
 

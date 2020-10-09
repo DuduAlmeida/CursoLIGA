@@ -9,9 +9,9 @@
     form {
         width: 100%;
 
-        .bird--input:not(.no-margin){
+        .bird--input:not(.no-margin) {
             margin-top: 2.4rem;
-        }        
+        }
     }
 
     &--avatar {
@@ -52,23 +52,22 @@
         }
     }
 
-    &--buttons{
-
+    &--buttons {
         margin-top: 1.6rem;
+        margin-bottom: 1.6rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         outline: none;
 
-        &--item.full{
-
+        &--item.full {
             width: calc(100% - 6rem);
         }
 
         ion-back-button,
-        ion-button{
-
+        ion-button,
+        button {
             outline: none;
             background-color: var(--bird-primary-dark);
             position: relative;
@@ -76,15 +75,27 @@
             border-radius: 1.25rem;
             height: 5rem;
         }
-        ion-back-button{
+        ion-back-button {
             color: var(--bird-primary);
             width: 5rem;
         }
 
-        ion-button{     
-            width: 100%;       
-            --background:var(--bird-primary);
+        ion-button,
+        button {
+            width: 100%;
+            background-color: var(--bird-primary);
+            --background: var(--bird-primary);
             color: var(--bird-light);
         }
+    }
+}
+
+ion-back-button,
+ion-button,
+button {
+    &:disabled {
+        opacity: .5;
+        cursor: none;
+        pointer-events: none;
     }
 }
