@@ -18,8 +18,8 @@ export async function getCategoriesPaginatedMockup(currentPage: number, maxItens
     // debugger;
 
     paginatedCategory.items.map((category, index) => {
-        category.id = index;
-        category.name += index;
+        category.id = index+1;
+        category.name += index+1;
         items++;
     });
 

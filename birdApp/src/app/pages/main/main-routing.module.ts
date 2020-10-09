@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () => import('./categories/categories.module').then( m => m.CategoriesPageModule)
       },
       {
+        path: 'categories/:categoryId',
+        loadChildren: () => import('./category-comments/category-comments.module').then( m => m.CategoryCommentsPageModule)
+      },
+      {
         path: 'my-comments',
         loadChildren: () => import('./my-comments/my-comments.module').then( m => m.MyCommentsPageModule)
       },
@@ -27,6 +31,7 @@ const routes: Routes = [
       },
     ]    
   },
+
 ];
 
 @NgModule({
