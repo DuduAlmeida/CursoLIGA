@@ -1,0 +1,90 @@
+.comment {
+    padding: 2.4rem 2.4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-height: 100%;
+    overflow-y: auto;
+
+    form {
+        width: 100%;
+
+        .bird--input:not(.no-margin){
+            margin-top: 2.4rem;
+        }        
+    }
+
+    &--avatar {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 2.4rem;
+
+        &--item {
+            border-radius: 1.2rem;
+            width: 6rem;
+            height: 6rem;
+            margin-bottom: 2.4rem;
+            position: relative;
+            overflow: hidden;
+
+            p {
+                font-size: 2rem;
+                line-height: 2rem;
+                text-align: center;
+            }
+
+            &--selected {
+                border: var(--bird-light) 4px solid;
+                border-radius: 1.2rem;
+                width: 6rem;
+                height: 6rem;
+                position: relative;
+                overflow: hidden;
+
+                p {
+                    font-size: 2rem;
+                    line-height: calc(2rem - 8px);
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    &--buttons{
+
+        margin-top: 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        outline: none;
+
+        &--item.full{
+
+            width: calc(100% - 6rem);
+        }
+
+        ion-back-button,
+        ion-button{
+
+            outline: none;
+            background-color: var(--bird-primary-dark);
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.25rem;
+            height: 5rem;
+        }
+        ion-back-button{
+            color: var(--bird-primary);
+            width: 5rem;
+        }
+
+        ion-button{     
+            width: 100%;       
+            --background:var(--bird-primary);
+            color: var(--bird-light);
+        }
+    }
+}

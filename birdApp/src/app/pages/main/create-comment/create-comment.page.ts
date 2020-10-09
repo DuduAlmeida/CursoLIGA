@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AvatarItem } from 'src/app/models/interfaces/avatar-item';
 
 @Component({
   selector: 'app-create-comment',
@@ -25,12 +26,22 @@ export class CreateCommentPage implements OnInit {
   ngOnInit() {
   }
 
-  /* #region Private Properties*/
-
+  /* #region Public Properties*/
+  
   /*** 
    * A identificação da categoria
    */
-  private readonly categoryId: number;
+  public categoryId: number;
 
-  /* #Endregion Private Properties*/
+  /*** 
+   * A lista de avatares disponíveis para o usuário
+   */
+  public readonly listAvatars: AvatarItem[] = [
+    { personColor: '#ffc542', personEmoji:'🤖'},
+    { personColor: '#ff575f', personEmoji:'🎣'},
+    { personColor: '#3dd598', personEmoji:'👻'},
+    { personColor: '#755fe2', personEmoji:'👩🏼‍🚀'},
+  ]
+  
+  /* #Endregion Public Properties*/
 }
