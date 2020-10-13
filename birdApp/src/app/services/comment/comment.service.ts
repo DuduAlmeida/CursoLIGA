@@ -73,6 +73,11 @@ export class CommentService {
     if(error)
       return [false, 'Ocorreu um erro ao criar, por favor, tente novamente'];
 
+    const {error: errorOnSave} = await this.interactor.saveCommentCreated(success);
+
+    if(errorOnSave)
+      console.error(errorOnSave);
+      
     return [true, 'Comentário criado com sucesso'];
   }
 
