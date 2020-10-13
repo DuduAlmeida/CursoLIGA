@@ -118,6 +118,8 @@ export class CreateCommentPage implements OnInit {
     const toast = await this.toast.create({
       message,
       duration: 5_000,
+      cssClass: 'bird--toast',
+      color: '#3dd598',
     });
 
     await toast.present();

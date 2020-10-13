@@ -1,0 +1,11 @@
+.bird--toast {
+    --background: var(--bird-primary);
+    --ion-color-base: var(--bird-primary);
+    
+    .toast-wrapper {
+        --background: var(--bird-primary);
+        --ion-color-base: var(--bird-primary);
+        color: var(--bird-light);
+        background-color: var(--bird-primary);
+    }
+}

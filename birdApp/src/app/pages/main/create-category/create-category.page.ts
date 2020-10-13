@@ -102,7 +102,9 @@ export class CreateCategoryPage implements OnInit {
   private async showMessage(message: string): Promise<void>{
     const toast = await this.toast.create({
       message,
-      duration: 5_000,
+      duration: 5000_000,
+      cssClass: 'bird--toast',
+      color: '#3dd598',      
     });
 
     await toast.present();
