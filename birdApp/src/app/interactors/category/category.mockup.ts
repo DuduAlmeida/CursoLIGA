@@ -1,4 +1,6 @@
 import { StorageAsyncResult } from 'src/app/models/interfaces/storage-async-result.interface';
+import { CreateCategoryPayload } from 'src/app/models/payloads/create-category.payload';
+import { CategoryProxy, getFakeCategoryProxy } from 'src/app/models/proxies/category.proxy';
 import { getFakeCategoryPaginatedProxy, PaginatedCategoryProxy } from 'src/app/models/proxies/paginated-category.proxy';
 
 
@@ -35,5 +37,17 @@ export async function getCategoriesPaginatedMockup(currentPage: number, maxItens
     return Promise.resolve({
         error: undefined,
         success: paginatedCategory
+    });
+}
+
+export async function createCategoryMockup(payload: CreateCategoryPayload): Promise<StorageAsyncResult<CategoryProxy>>{
+
+    await new Promise( resolve =>{
+        setTimeout(resolve, 2000);
+    });
+
+    return Promise.resolve({
+        success: getFakeCategoryProxy(),
+        error: undefined
     });
 }

@@ -73,7 +73,7 @@ export class CommentService {
     if(error)
       return [false, 'Ocorreu um erro ao criar, por favor, tente novamente'];
 
-    return [true, 'Comentário cirado com sucesso'];
+    return [true, 'Comentário criado com sucesso'];
   }
 
   /* #Endregion Public methods*/

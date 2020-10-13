@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CategoryInteractor } from 'src/app/interactors/category/category.interactor';
+import { CreateCategoryPayload } from 'src/app/models/payloads/create-category.payload';
 import { getEmptyCategoryPaginatedProxy, PaginatedCategoryProxy } from 'src/app/models/proxies/paginated-category.proxy';
 import { getEmptyCommentPaginatedProxy, PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 
@@ -41,5 +42,19 @@ export class CategoryService {
       return getEmptyCommentPaginatedProxy();
 
     return success;
+  }
+
+  /*** 
+   * Método que cria uma nova categoria
+   * 
+   * @param payload As informaçõs para a criação da categoria
+   */
+  public async createCategory(payload: CreateCategoryPayload): Promise<[boolean, string]>{
+    const {error, success} = await this.interactor.createCategory(payload);
+
+    if(error)
+    return [false, 'Ocorreu um erro ao criar, por favor, tente novamente'];
+
+    return [true, 'Categoria criada com sucesso'];
   }
 }

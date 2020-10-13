@@ -1,11 +1,13 @@
+import { CategoryProxy } from './../../models/proxies/category.proxy';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageAsyncResult } from 'src/app/models/interfaces/storage-async-result.interface';
+import { CreateCategoryPayload } from 'src/app/models/payloads/create-category.payload';
 import { PaginatedCategoryProxy } from 'src/app/models/proxies/paginated-category.proxy';
 import { PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 import { environment } from 'src/environments/environment';
 import { getAllCommentsPaginatedByIdMockup } from '../comment/comment.mockup';
-import { getCategoriesPaginatedMockup } from './category.mockup';
+import { createCategoryMockup, getCategoriesPaginatedMockup } from './category.mockup';
 
 
 /*** 
@@ -62,6 +64,23 @@ export class CategoryInteractor {
             .then(success => ({ success, error: undefined }))
             .catch((error) => ({ success: undefined, error }));
     }
+
+    /*** 
+     * Método que cria uma nova categoria
+     * 
+     * @param payload As informaçõs para a criação da categoria
+     */
+    public async createCategory(payload: CreateCategoryPayload): Promise<StorageAsyncResult<CategoryProxy>>{
+        if (environment.mockupEnabled)
+            return await createCategoryMockup(payload);
+
+        const url = environment.api.category.create;
+
+        return await this.http.post<CategoryProxy>(url, payload)
+            .toPromise()
+            .then(success => ({ success, error: undefined }))
+            .catch((error) => ({ success: undefined, error }));
+      }
 
     /* #Endregion Http methods*/
 }

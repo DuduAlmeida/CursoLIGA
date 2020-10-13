@@ -21,7 +21,8 @@ export const environment = {
     },
     category: {
       list: '/categories',
-      listPaginated: '/categories?page={currentPage}&maxItens={maxItens}'
+      listPaginated: '/categories?page={currentPage}&maxItens={maxItens}',
+      create: '/categories'
     },
   },
 };
