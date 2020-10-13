@@ -5,9 +5,10 @@ import { map } from 'rxjs/operators';
 
 import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
 import { environment } from 'src/environments/environment';
-import { getAllCommentsMockup, getAllCommentsPaginatedMockup, getMyCommentsMockup } from './comment.mockup';
+import { createCommentMockup, getAllCommentsMockup, getAllCommentsPaginatedMockup, getMyCommentsMockup } from './comment.mockup';
 import { StorageAsyncResult } from 'src/app/models/interfaces/storage-async-result.interface';
 import { PaginatedCommentProxy } from 'src/app/models/proxies/paginated-comment.proxy';
+import { CreateCommentPayload } from 'src/app/models/payloads/create-comment.payload';
 
 
 /*** 
@@ -47,7 +48,7 @@ export class CommentInteractor {
             .catch(() => ({ success: undefined, error: 'Ocorreu um erro ao buscar do cache, tente novamente' }));
     }
 
-    public async getAllComments(): Promise<StorageAsyncResult<CommentProxy[]>> {        
+    public async getAllComments(): Promise<StorageAsyncResult<CommentProxy[]>> {
 
         if (environment.mockupEnabled)
             return await getAllCommentsMockup();
@@ -71,6 +72,24 @@ export class CommentInteractor {
             .replace('{maxItens}', maxItens.toString());
 
         return await this.http.get<PaginatedCommentProxy>(url)
+            .toPromise()
+            .then(success => ({ success, error: undefined }))
+            .catch((error) => ({ success: undefined, error }));
+    }
+
+    /*** 
+     * Método que cria um novo comentário
+     * 
+     * @param payload As informaçõs para a criação do comentário
+     */
+    public async createComment(payload: CreateCommentPayload): Promise<StorageAsyncResult<CommentProxy>> {
+        
+        if (environment.mockupEnabled)
+            return await createCommentMockup(payload);
+
+        const url = environment.api.comment.create;
+
+        return await this.http.post<CommentProxy>(url, payload)
             .toPromise()
             .then(success => ({ success, error: undefined }))
             .catch((error) => ({ success: undefined, error }));

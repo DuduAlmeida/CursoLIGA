@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AvatarItem } from 'src/app/models/interfaces/avatar-item';
 import { CreateCommentPayload } from 'src/app/models/payloads/create-comment.payload';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-comment',
@@ -19,6 +19,7 @@ export class CreateCommentPage implements OnInit {
     private readonly fb: FormBuilder,
     private readonly comment: CommentService,
     private readonly toast: ToastController,
+    private readonly loading: LoadingController,
 
   ) {
 
@@ -87,7 +88,13 @@ export class CreateCommentPage implements OnInit {
       personColor: this.listAvatars[personAvatarIndex].personColor,
     }
     
-    const { isSuccess, result } = await this.comment.createComment(payload);
+    const loading = await this.loading.create({
+      cssClass: 'bird--loading'
+    });
+    
+    loading.present();
+    const [ isSuccess, result]  = await this.comment.createComment(payload);
+    loading.dismiss();
 
     await this.showMessage(result);
 

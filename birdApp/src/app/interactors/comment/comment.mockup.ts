@@ -1,4 +1,6 @@
+import { delay } from 'rxjs/operators';
 import { StorageAsyncResult } from 'src/app/models/interfaces/storage-async-result.interface';
+import { CreateCommentPayload } from 'src/app/models/payloads/create-comment.payload';
 import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
 import { PaginatedCommentProxy, getFakeCommentPaginatedProxy } from 'src/app/models/proxies/paginated-comment.proxy';
 
@@ -97,5 +99,22 @@ export async function getAllCommentsPaginatedByIdMockup(categoryId: number, curr
     return Promise.resolve({
         error: undefined,
         success: paginatedComment
+    });
+}
+
+/*** 
+ * Método que retorna as informações de um comentário criado com sucesso
+ * 
+ * @param payload As informações para a criação do comentário
+ */
+export async function createCommentMockup( payload: CreateCommentPayload): Promise<StorageAsyncResult<CommentProxy>> {
+    
+    await new Promise( resolve =>{
+        setTimeout(resolve, 2000);
+    });
+
+    return Promise.resolve({
+        success: getFakeCommentProxy(),
+        error: undefined
     });
 }
