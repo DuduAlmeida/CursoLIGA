@@ -104,7 +104,8 @@ export class CreateCategoryPage implements OnInit {
       message,
       duration: 5_000,
       cssClass: 'bird--toast',
-      color: '#3dd598',      
+      color: '#3dd598',   
+      position: 'top',
     });
 
     await toast.present();

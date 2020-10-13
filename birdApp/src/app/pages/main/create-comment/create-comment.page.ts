@@ -120,6 +120,7 @@ export class CreateCommentPage implements OnInit {
       duration: 5_000,
       cssClass: 'bird--toast',
       color: '#3dd598',
+      position: 'top',
     });
 
     await toast.present();
