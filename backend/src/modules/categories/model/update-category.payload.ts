@@ -1,0 +1,32 @@
+import { ApiPropertyOptional } from '@nestjs/swagger';
+/* #region Imports*/
+
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDefined, IsHexColor, IsOptional, IsString, MaxLength } from 'class-validator';
+
+/* #Endregion Imports*/
+
+/*** 
+ * A classe que representa o payload enviado para atualizar uma categoria
+ */
+export class UpdateCategoryPayload {
+
+    /*** 
+     * O nome dessa categoria
+     */
+    @ApiPropertyOptional()
+    @IsOptional()
+    @IsString({ message: 'É necessário enviar um texto válido para o nome da categoria' })
+    @MaxLength(64, { message: 'O nome da categoria não pode exceder 64 caracteres' })
+    name?: string;
+
+    /*** 
+     * A cor dessa categoria
+     */
+    @ApiPropertyOptional()
+    @IsOptional()
+    @IsString({ message: 'É necessário enviar um texto válido para o cor da categoria' })
+    @IsHexColor({ message: 'É necessário enviar um HEX válido para a cor da categoria' })
+    color?: string;
+
+}

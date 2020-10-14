@@ -44,7 +44,7 @@ export class CategoryEntity extends BaseEntity {
     /*** 
      * A lista de comentários dessa categoria
      */
-    @ApiProperty({type: () => CommentEntity})
+    @ApiProperty({type: () => CommentEntity, isArray: true})
     @OneToMany(() => CommentEntity, comment => comment.categoryId)
     comments: CommentEntity[];
     
