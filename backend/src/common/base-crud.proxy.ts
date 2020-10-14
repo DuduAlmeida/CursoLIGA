@@ -1,8 +1,8 @@
 /* #region */
 
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity } from './base-entity';
 
+import { BaseEntity } from './base-entity';
 
 /* #Endregion */
 

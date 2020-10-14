@@ -1,8 +1,8 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
 /* #region Imports*/
 
-import { ApiProperty } from '@nestjs/swagger';
-import { IsDefined, IsHexColor, IsOptional, IsString, MaxLength } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
+
+import { IsHexColor, IsOptional, IsString, MaxLength } from 'class-validator';
 
 /* #Endregion Imports*/
 
