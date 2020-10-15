@@ -16,7 +16,7 @@ export const environment = {
     comment: {
       list: '/comments',
       listPaginated: '/comments?page={currentPage}&maxItens={maxItens}',
-      listPaginatedById: '/category/{categoryId}/comments?page={currentPage}&maxItens={maxItens}',
+      listPaginatedById: '/category/comments?page={currentPage}&maxItens={maxItens}&categoryId={categoryId}',
       create: '/comments'
     },
     category: {
