@@ -2,7 +2,7 @@ import { PaginatedCategoryProxy } from './../model/paginated-category.proxy';
 /* #region Imports*/
 
 import { Body, ClassSerializerInterceptor, Controller, Get, Param, Query, UseInterceptors, NotFoundException, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CategoryProxy } from '../model/category.proxy';
 import { CategoryService } from '../services/category.service';
 import { CreateCategoryPayload } from '../model/create-category.payload';
@@ -31,18 +31,18 @@ export class CategoryController {
      * Método que retorna várias informações da entidade
      * 
      * @param page A página atual
-     * @param maxItems A quantidade máxima de itens por página
+     * @param maxItens A quantidade máxima de itens por página
      * @param search O termo para pesquisa de uma categoria
      */
     @Get()
     @ApiOperation({summary: 'Método que retorna uma lista de categorias.'})
     @ApiOkResponse({ type: PaginatedCategoryProxy })
     @ApiQuery({name: 'page', required: false, example: 1, allowEmptyValue: false, description: 'A página atual da paginação.'})
-    @ApiQuery({name: 'maxItems', required: false, example: 5, allowEmptyValue: false, description: 'A quantidade máxima de itens por página. Min: 5 - Max: 100.'})
+    @ApiQuery({name: 'maxItens', required: false, example: 5, allowEmptyValue: false, description: 'A quantidade máxima de itens por página. Min: 5 - Max: 100.'})
     @ApiQuery({name: 'search', required: false, example: 'Typescript', allowEmptyValue: false, description: 'A quantidade máxima de itens por página. Min: 5 - Max: 100.'})
-    public async getMany(@Query('page') page?: number, @Query('maxItems') maxItems?: number, @Query('search') search?: string) : Promise<PaginatedCategoryProxy> {
+    public async getMany(@Query('page') page?: number, @Query('maxItens') maxItens?: number, @Query('search') search?: string) : Promise<PaginatedCategoryProxy> {
         
-        return await this.service.listMany(Number(page) || 1, Number(maxItems) || 5, search);
+        return await this.service.listMany(Number(page) || 1, Number(maxItens) || 5, search);
     }
 
     /*** 
@@ -53,6 +53,7 @@ export class CategoryController {
     @Get('/:categoryId')
     @ApiOperation({summary: 'Método que retorna uma categoria baseada na sua identificação.'})
     @ApiOkResponse({ type: CategoryProxy })
+    @ApiParam({name: 'categoryId', required: true, example: 1, allowEmptyValue: false, description: 'O identficador da categoria.'})
     @ApiNotFoundResponse({type: NotFoundException,description: 'A categoria que você buscou não existe'})
     public async getOne( @Param('categoryId') categoryId: number): Promise<CategoryProxy> {
         

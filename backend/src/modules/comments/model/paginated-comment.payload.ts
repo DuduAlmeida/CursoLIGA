@@ -1,28 +1,29 @@
 /* #region Imports*/
 
 import { ApiProperty } from '@nestjs/swagger';
+
 import { BasePaginatedProxy } from './../../../common/base-paginated.proxy';
-import { CategoryProxy } from './category.proxy';
-import { CategoryEntity } from 'src/typeorm/entities/category.entity';
+import { CommentProxy } from './comment.proxy';
+import { CommentEntity } from 'src/typeorm/entities/comment.entity';
 
 /* #Endregion Imports*/
 
 /*** 
  * A classe que representa os resultados paginados das categorias
  */
-export class PaginatedCategoryProxy extends BasePaginatedProxy {
+export class PaginatedCommentProxy extends BasePaginatedProxy {
 
     /* #region Constructor*/
 
     constructor(
-        entities: CategoryEntity[],
+        entities: CommentEntity[],
         currentPage: number,
         pageCount: number,
         maxItens: number,
     ) { 
         super(currentPage,pageCount,maxItens);
 
-        this.items = Array.isArray(entities) && entities.map(category => new CategoryProxy(category));
+        this.items = Array.isArray(entities) && entities.map(comment => new CommentProxy(comment));
     }
 
     /* #Endregion Constructor*/
@@ -32,8 +33,8 @@ export class PaginatedCategoryProxy extends BasePaginatedProxy {
     /**
      * Os itens dessa páginação
      */
-    @ApiProperty({type: () => CategoryProxy, isArray: true})
-    items: CategoryProxy[];
+    @ApiProperty({type: () => CommentProxy, isArray: true})
+    items: CommentProxy[];
 
     /* #Endregion Public Properties*/
 }

@@ -31,7 +31,7 @@ export class CategoryService {
      * A quantidade máxima de itens por paginação
      * @private
      */
-    private readonly maxItemsPerPage = 100;
+    private readonly maxItensPerPage = 100;
     
     /*** 
      * A quantidade mínima de itens por paginação
@@ -47,14 +47,14 @@ export class CategoryService {
      * Método que retorna uma lista com as entidades paginadas
      * 
      * @param currentPage A página atual
-     * @param maxItems A quantidade máxima de itens
+     * @param maxItens A quantidade máxima de itens
      * @param search O termo para pesquisa de uma categoria
      */
-    public async listMany(currentPage: number, maxItems: number, search: string): Promise<PaginatedCategoryProxy> {
+    public async listMany(currentPage: number, maxItens: number, search: string): Promise<PaginatedCategoryProxy> {
         //Math.min(v1, v2) => retorna o menor dos dois valores passados
         //Math.max(v1, v2) => retorna o maior dos dois valores passados
         currentPage = Math.max(1, currentPage);
-        maxItems = Math.max(this.minItemsPerPage, Math.min(this.maxItemsPerPage, maxItems));
+        maxItens = Math.max(this.minItemsPerPage, Math.min(this.maxItensPerPage, maxItens));
 
         let query =  this.repository.createQueryBuilder('category');
 
@@ -62,18 +62,18 @@ export class CategoryService {
             query = query.where('LOWER(category.name) LIKE :search', {search: `%${search.toLowerCase()}%`});
 
         const [entities, total] = await query            
-            .skip((currentPage - 1) * maxItems)
-            .take(maxItems)
+            .skip((currentPage - 1) * maxItens)
+            .take(maxItens)
             .orderBy('name', 'ASC')
             .getManyAndCount();
 
-        const pageCount = Math.ceil(total / maxItems);
+        const pageCount = Math.ceil(total / maxItens);
 
         return new PaginatedCategoryProxy(
             entities,
             currentPage,
             pageCount,
-            maxItems,
+            maxItens,
         );
     }
 

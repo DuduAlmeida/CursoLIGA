@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { TypeOrmService } from './modules/typeorm/type-orm.service';
 import { CategoryModule } from './modules/categories/category.module';
+import { CommentModule } from './modules/comments/comment.module';
 
 /* #Endregion Imports*/
 
@@ -20,7 +21,8 @@ import { CategoryModule } from './modules/categories/category.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    CategoryModule
+    CategoryModule,
+    CommentModule,
   ],
 })
 export class AppModule {  }
