@@ -1,9 +1,17 @@
+/* #region Imports*/
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { TypeOrmService } from './modules/typeorm/type-orm.service';
+import { CategoryModule } from './modules/categories/category.module';
 
+/* #Endregion Imports*/
+
+/*** 
+ * Módulo principal da aplicação
+ */
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -12,6 +20,7 @@ import { TypeOrmService } from './modules/typeorm/type-orm.service';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    CategoryModule
   ],
 })
 export class AppModule {  }
