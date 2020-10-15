@@ -1,10 +1,9 @@
-import { environment } from './../environments/environment';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/pt';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -13,6 +12,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from './../environments/environment';
+import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 
 registerLocaleData(pt);
 
@@ -33,7 +34,8 @@ registerLocaleData(pt);
     StatusBar,
     SplashScreen,
     { provide: LOCALE_ID, useValue: 'pt' },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

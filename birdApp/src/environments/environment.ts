@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  mockupEnabled: true,
+  mockupEnabled: false,
   config: {
     dbName: '__bird',
   },
@@ -13,6 +13,7 @@ export const environment = {
   },
   api: {
     baseUrl: 'http://localhost:3000',
+    
     comment: {
       list: '/comments',
       listPaginated: '/comments?page={currentPage}&maxItens={maxItens}&includeCategory=true',
