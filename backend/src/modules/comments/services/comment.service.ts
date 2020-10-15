@@ -50,18 +50,31 @@ export class CommentService {
      * @param categoryId O identificador da categoria que esse comentário percente
      * @param currentPage A página atual
      * @param maxItens A quantidade máxima de itens
+     * @param includeCategory Diz se deve incluir as indormações da categoria do comentário
      */
-    public async listMany(categoryId: number, currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
+    public async listMany(
+        categoryId: number,
+        currentPage: number,
+        maxItens: number,
+        includeCategory: boolean,
+    ): Promise<PaginatedCommentProxy> {
+
         currentPage = Math.max(1, currentPage);
         maxItens = Math.max(this.minItensPerPage, Math.min(this.maxItensPerPage, maxItens));
 
         let query = this.repository.createQueryBuilder('comment');
 
+        //Caso tenham dois wheres em uma query, o segundo deve ser andWhere
+        if (categoryId)
+            query = query.where('comment.categoryId = :categoryId', { categoryId });
+
+        if (includeCategory)
+            query = query.leftJoinAndSelect('comment.category', 'category');
+
         const [entities, total] = await query
-            .where('comment.categoryId = :categoryId', { categoryId: `${categoryId}` })
-            .skip((currentPage - 1) * maxItens)
             .take(maxItens)
-            .orderBy('createdAt', 'DESC')
+            .skip((currentPage - 1) * maxItens)
+            .orderBy('comment.createdAt', 'DESC')
             .getManyAndCount();
 
         const pageCount = Math.ceil(total / maxItens);

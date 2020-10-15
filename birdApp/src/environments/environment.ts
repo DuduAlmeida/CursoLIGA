@@ -15,8 +15,8 @@ export const environment = {
     baseUrl: 'http://localhost:3000',
     comment: {
       list: '/comments',
-      listPaginated: '/comments?page={currentPage}&maxItens={maxItens}',
-      listPaginatedById: '/category/comments?page={currentPage}&maxItens={maxItens}&categoryId={categoryId}',
+      listPaginated: '/comments?page={currentPage}&maxItens={maxItens}&includeCategory=true',
+      listPaginatedById: '/comments?page={currentPage}&maxItens={maxItens}&categoryId={categoryId}&includeCategory=true',
       create: '/comments'
     },
     category: {
