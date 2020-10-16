@@ -83,7 +83,7 @@ export class CommentInteractor {
      * @param payload As informaçõs para a criação do comentário
      */
     public async createComment(payload: CreateCommentPayload): Promise<StorageAsyncResult<CommentProxy>> {
-        
+
         if (environment.mockupEnabled)
             return await createCommentMockup(payload);
 
@@ -100,11 +100,11 @@ export class CommentInteractor {
      * 
      * @param comment As informações do comentário
      */
-    public async saveCommentCreated(comment: CommentProxy): Promise<StorageAsyncResult<boolean>>{
+    public async saveCommentCreated(comment: CommentProxy): Promise<StorageAsyncResult<boolean>> {
 
         await this.storage.ready().catch(console.error);
 
-        const {success}  = await this.storage.get(environment.keys.myComments)
+        const { success } = await this.storage.get(environment.keys.myComments)
             .then(success => ({ success, error: undefined }))
             .catch(() => ({ success: undefined, error: 'Ocorreu um erro ao buscar do cache, tente novamente' }));
 

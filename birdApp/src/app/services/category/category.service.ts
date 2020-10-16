@@ -50,7 +50,7 @@ export class CategoryService {
    * @param payload As informaçõs para a criação da categoria
    */
   public async createCategory(payload: CreateCategoryPayload): Promise<[boolean, string]>{
-    const {error, success} = await this.interactor.createCategory(payload);
+    const {error, success} = await this.interactor.createCategory(payload);    
 
     if(error)
     return [false, 'Ocorreu um erro ao criar, por favor, tente novamente'];

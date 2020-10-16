@@ -70,7 +70,7 @@ export class CategoryInteractor {
      * 
      * @param payload As informaçõs para a criação da categoria
      */
-    public async createCategory(payload: CreateCategoryPayload): Promise<StorageAsyncResult<CategoryProxy>>{
+    public async createCategory(payload: CreateCategoryPayload): Promise<StorageAsyncResult<CategoryProxy>> {
         if (environment.mockupEnabled)
             return await createCategoryMockup(payload);
 
@@ -80,7 +80,7 @@ export class CategoryInteractor {
             .toPromise()
             .then(success => ({ success, error: undefined }))
             .catch((error) => ({ success: undefined, error }));
-      }
+    }
 
     /* #Endregion Http methods*/
 }
