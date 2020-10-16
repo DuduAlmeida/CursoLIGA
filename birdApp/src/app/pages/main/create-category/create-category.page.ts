@@ -19,19 +19,19 @@ export class CreateCategoryPage implements OnInit {
     private readonly router: Router,
     private readonly category: CategoryService
   ) {
-    
+
     this.formGroup = this.fb.group({
-      categoryName: ['', Validators.required],
+      name: ['', Validators.required],
       colorIndex: [0, Validators.required]
     })
-   }
+  }
 
   ngOnInit() {
   }
-  
+
 
   /* #region Public properties*/
-  
+
   /*** 
    * A referência do formulário
    */
@@ -41,29 +41,29 @@ export class CreateCategoryPage implements OnInit {
    * Diz se você está enviando esse formulário
    */
   public isSendingForm: boolean = false;
-  
+
   /* #Endregion Public properties*/
 
   /* #region Private properties*/
-  
+
   /*** 
    * A lista de cores disponíveis para o usuário
    */
-  public readonly listCategoryColors: {color: string}[] = [
-    { color: '#ffc542'},
-    { color: '#ff575f'},
-    { color: '#3dd598'},
-    { color: '#755fe2'},
+  public readonly listCategoryColors: { color: string }[] = [
+    { color: '#ffc542' },
+    { color: '#ff575f' },
+    { color: '#3dd598' },
+    { color: '#755fe2' },
   ]
-  
+
   /* #Endregion Private properties*/
 
   /* #region Public Methods*/
-  
+
   public async onSubmit() {
-    if(this.isSendingForm)
+    if (this.isSendingForm)
       return;
-    
+
     this.isSendingForm = true;
 
     const { colorIndex, ...otherValues } = this.formGroup.getRawValue();
@@ -72,45 +72,45 @@ export class CreateCategoryPage implements OnInit {
       ...otherValues,
       color: this.listCategoryColors[colorIndex].color
     }
-    
+
     const loading = await this.loading.create({
       cssClass: 'bird--loading'
     });
-    
+
     loading.present();
-    const [ isSuccess, result]  = await this.category.createCategory(payload);
+    const [isSuccess, result] = await this.category.createCategory(payload);
     loading.dismiss();
 
     await this.showMessage(result);
+    this.isSendingForm = false;
 
-    if(!isSuccess)
-      return ;
+    if (!isSuccess)
+      return;
 
     await this.router.navigateByUrl(`/main/categories`);
-    this.isSendingForm = false;
   }
-  
+
   /* #Endregion Public Methods*/
 
   /* #region Private Methods*/
-  
+
   /*** 
    * Método que exibe a mensagem de erro
    * 
    * @param message A mensagem
    */
-  private async showMessage(message: string): Promise<void>{
+  private async showMessage(message: string): Promise<void> {
     const toast = await this.toast.create({
       message,
       duration: 5_000,
       cssClass: 'bird--toast',
-      color: '#3dd598',   
+      color: '#3dd598',
       position: 'top',
     });
 
     await toast.present();
   }
-  
+
   /* #Endregion Private Methods*/
 
 }
