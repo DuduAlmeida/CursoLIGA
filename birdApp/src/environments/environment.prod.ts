@@ -9,7 +9,7 @@ export const environment = {
     myComments: 'MY_COMMENTS_KEY',
   },
   api: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://127.0.0.1:3000/',
     comment: {
       list: '/comments',
       listPaginated: '/comments?page={currentPage}&maxItens={maxItens}&includeCategory=true',
