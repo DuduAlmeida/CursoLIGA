@@ -12,5 +12,4 @@ Desenvolvimento do curso promovido pelo LIGA FACENS sobre desenvolvimento mobile
 
 É um aplicativo para criar categorias e comentários sobre diversos assuntos aleatórios que você goste com outras pessoas.
 
-## Layout
 
