@@ -27,7 +27,7 @@ registerLocaleData(pt);
     HttpClientModule,
     IonicStorageModule.forRoot({
       name: environment.config.dbName,
-      driverOrder: ['indexeddb', 'localStorage']
+      driverOrder: ['indexeddb', 'sqLite', 'websql','localStorage']
     }),
   ],
   providers: [

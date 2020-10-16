@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { map } from 'rxjs/operators';
 
 import { CommentProxy, getFakeCommentProxy } from 'src/app/models/proxies/comment.proxy';
 import { environment } from 'src/environments/environment';
@@ -34,12 +33,12 @@ export class CommentInteractor {
         if (environment.mockupEnabled)
             return await getMyCommentsMockup();
 
-        await this.storage.set(environment.keys.myComments, [
-            getFakeCommentProxy(),
-            getFakeCommentProxy(),
-            getFakeCommentProxy(),
-            getFakeCommentProxy()
-        ]);
+        // await this.storage.set(environment.keys.myComments, [
+        //     getFakeCommentProxy(),
+        //     getFakeCommentProxy(),
+        //     getFakeCommentProxy(),
+        //     getFakeCommentProxy()
+        // ]);
 
         await this.storage.ready().catch(console.error);
 
